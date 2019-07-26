@@ -9,10 +9,8 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {
-        email: "",
-        password: ""
-      }
+      email: "",
+      password: ""
     };
   }
   render() {
@@ -20,11 +18,21 @@ class LoginPage extends React.Component {
       <BrowserRouter>
         <div className="row">
           <div className="column">
-            <LoginFormLeft />
+            <div className="content-left">
+              <div className="image-background">
+                <img
+                  src={require("./../../../images/terralogic.png")}
+                  className="picture-background"
+                  alt="background"
+                />
+                <div className="title-background">We are family</div>
+                <p>© 2019 Terralogic, Inc</p>
+              </div>
+            </div>
           </div>
           <div className="column">
             <Route exact path="/" component={LoginFormRightLogin} />
-            <Route exact path="/signup" component={LoginFormRightSignUp} />
+            <Route path="/signup" component={LoginFormRightSignUp} />
           </div>
         </div>
       </BrowserRouter>

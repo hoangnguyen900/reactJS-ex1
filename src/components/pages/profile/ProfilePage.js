@@ -10,15 +10,16 @@ class ProfilePage extends React.Component {
     super(props);
     this.state = {};
   }
+  componentWillMount() {
+    console.log(this.props);
+  }
   render() {
     return (
-      <div>
       <BrowserRouter>
-        <HeaderForm/>
-        <ProfileForm/>
-        <FooterForm/>
+        <HeaderForm />
+        <ProfileForm />
+        <FooterForm />
       </BrowserRouter>
-      </div>
     );
   }
 }

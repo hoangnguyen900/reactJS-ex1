@@ -17,13 +17,13 @@ class ProfileForm extends React.Component {
               alt="avatar"
             />
             <a href="/#" onClick="">
-              <i class="fa fa-cog	" />
+              <i className="fa fa-cog	" />
             </a>
           </div>
           <div className="row  ">
             <div className="col-sm-6">
               <div className="p-formField">
-                <label for="display">Display Name</label>
+                <label>Display Name</label>
                 <input
                   type="text"
                   id="display"
@@ -35,7 +35,7 @@ class ProfileForm extends React.Component {
             </div>
             <div className="col-sm-6">
               <div className="p-formField">
-                <label for="displayinfo">Display Info</label>
+                <label >Display Info</label>
                 <input
                   type="text"
                   id="displayinfo"
@@ -48,7 +48,7 @@ class ProfileForm extends React.Component {
             </div>
             <div className="col-sm-6">
               <div className="p-formField">
-                <label for="email">Email</label>
+                <label >Email</label>
                 <input
                   type="email"
                   id="email"
@@ -61,7 +61,7 @@ class ProfileForm extends React.Component {
             </div>
             <div className="col-sm-6">
               <div className="p-formField">
-                <label for="phone">Phone Number</label>
+                <label >Phone Number</label>
                 <input
                   type="phone"
                   id="phone"
@@ -74,7 +74,7 @@ class ProfileForm extends React.Component {
             </div>
             <div className="col-sm-6">
               <div className="p-formField">
-                <label for="password">New Password</label>
+                <label >New Password</label>
                 <input
                   type="text"
                   id="password"
@@ -87,7 +87,7 @@ class ProfileForm extends React.Component {
             </div>
             <div className="col-sm-6">
               <div className="p-formField">
-                <label for="confirm">Confirm Password</label>
+                <label >Confirm Password</label>
                 <input
                   type="text"
                   id="confirm"

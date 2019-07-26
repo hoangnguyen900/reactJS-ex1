@@ -1,5 +1,6 @@
 import React from "react";
 import "./../styles.scss";
+
 class LoginFormLeft extends React.Component {
   render() {
     return (

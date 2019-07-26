@@ -1,11 +1,31 @@
 import React from "react";
 import "./../styles.scss";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from './../../../../actions/index'
 class LoginFormRightSignUp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        email: "",
+        password: ""
+    };
+  } 
+  onSubmit=(e)=>{
+    e.preventDefault();
+    this.props.onSignUp(this.state);
+  }
+  onChange=(e)=>{
+    this.setState({
+      [e.target.name]:e.target.value
+    })
+  }
   render() {
+    var{email,password}=this.state
+
     return (
       <div className="content-right">
-        <div className="form-info1">
+        <form onSubmit={this.onSubmit} className="form-info1">
           <h1>Sign Up</h1>
           <div className="formField">
             <label for="email">Email</label>
@@ -15,6 +35,8 @@ class LoginFormRightSignUp extends React.Component {
               name="email"
               className="form-input"
               placeholder="Enter your email"
+              value={email}
+              onChange={this.onChange}
             />
           </div>
           <div className="formField">
@@ -25,16 +47,20 @@ class LoginFormRightSignUp extends React.Component {
               name="password"
               className="form-input"
               placeholder="Enter your password"
+              value={password}
+              onChange={this.onChange}
             />
           </div>
           <div className="formField">
             <label for="confirmPassword">Confirm Password</label>
             <input
-              type="confirmPassword"
+              type="Password"
               id="confirmPassword"
               name="confirmPassword"
               className="form-input"
               placeholder="Confirm your password"
+              // value={email}
+              // onChange={this.onChange}
             />
           </div>
           <div className="formField">
@@ -53,10 +79,16 @@ class LoginFormRightSignUp extends React.Component {
           <div className="title-background-hidden">
             <p>© 2019 Terralogic, Inc</p>
           </div>
-        </div>
+        </form>
       </div>
     );
   }
 }
-
-export default LoginFormRightSignUp;
+const mapDispatchToProps=(dispatch,props)=>{
+  return{
+      onSignUp:(state)=>{
+          dispatch(actions.signUpAPI(state))
+      }
+  }
+}
+export default connect(null,mapDispatchToProps)(LoginFormRightSignUp);

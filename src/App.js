@@ -1,7 +1,7 @@
 import React from "react";
 import LoginPage from "./components/pages/Login/LoginPage";
-import { BrowserRouter, Route } from "react-router-dom";
-
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
 import ProfilePage from "./components/pages/profile/ProfilePage";
 class App extends React.Component {
@@ -9,15 +9,18 @@ class App extends React.Component {
     super(props);
     this.state = {};
   }
+
   render() {
     return (
       <BrowserRouter>
         <Route exact path="/" component={LoginPage} />
-        <Route exact path="/profile" component={ProfilePage} />
-
+        <Route path="/profile" component={ProfilePage} />
       </BrowserRouter>
     );
   }
 }
 
-export default App;
+export default connect(
+  null,
+  null
+)(App);

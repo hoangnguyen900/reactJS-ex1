@@ -1,7 +1,8 @@
 import React from "react";
 import LoginPage from "./components/pages/Login/LoginPage";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import history from './history';
 
 import ProfilePage from "./components/pages/profile/ProfilePage";
 class App extends React.Component {
@@ -12,10 +13,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router  history={history} >
         <Route exact path="/" component={LoginPage} />
         <Route path="/profile" component={ProfilePage} />
-      </BrowserRouter>
+      </Router>
     );
   }
 }

@@ -1,8 +1,9 @@
 import React from "react";
 import "./../styles.scss";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./../../../../actions/index";
+import history from '../../../../history';
 
 class LoginFormRightLogin extends React.Component {
   constructor(props) {
@@ -10,12 +11,14 @@ class LoginFormRightLogin extends React.Component {
     this.state = {
       email: "",
       password: "",
-      checkLogin: false
+      checkLogin: false,
+      token:''
     };
   }
   onSubmit = e => {
     e.preventDefault();
     var { email, password, checkLogin } = this.state;
+    console.log(this.state);
     this.props.onLogin(this.state);
 
     // this.setState({
@@ -31,14 +34,18 @@ class LoginFormRightLogin extends React.Component {
   };
   componentWillReceiveProps(nextProps) {
         this.setState({
-          checkLogin:nextProps.login.checkLogin
+          checkLogin:nextProps.login.checkLogin,
+          token:nextProps.login.token
         })
+        localStorage.setItem("email",nextProps.login.email);
+
         console.log(nextProps)
   }
   render() {
     var { email, password } = this.state;
     if (this.state.checkLogin) {
-      return <Redirect to="/profile" data={this.state}/>;
+      // return <Redirect to="/profile" data={this.state}/>;
+      history.push('/profile')
     }
     return (
       <div className="content-right">

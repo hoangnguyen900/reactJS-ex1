@@ -2,26 +2,33 @@ import React from "react";
 import "./../styles.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from './../../../../actions/index'
+import * as actions from "./../../../../actions/index";
 class LoginFormRightSignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        email: "",
-        password: ""
+      email: "",
+      password: "",
+      confirmPassword: ""
     };
-  } 
-  onSubmit=(e)=>{
+  }
+  onSubmit = e => {
     e.preventDefault();
-    this.props.onSignUp(this.state);
-  }
-  onChange=(e)=>{
+    var { password, confirmPassword } = this.state;
+    if (confirmPassword !== password) {
+      alert("Passwords don't match");
+    } else {
+      e.preventDefault();
+      this.props.onSignUp(this.state);
+    }
+  };
+  onChange = e => {
     this.setState({
-      [e.target.name]:e.target.value
-    })
-  }
+      [e.target.name]: e.target.value
+    });
+  };
   render() {
-    var{email,password}=this.state
+    var { email, password } = this.state;
 
     return (
       <div className="content-right">
@@ -59,8 +66,8 @@ class LoginFormRightSignUp extends React.Component {
               name="confirmPassword"
               className="form-input"
               placeholder="Confirm your password"
-              // value={email}
-              // onChange={this.onChange}
+              value={this.state.confirmPassword}
+              onChange={this.onChange}
             />
           </div>
           <div className="formField">
@@ -84,11 +91,14 @@ class LoginFormRightSignUp extends React.Component {
     );
   }
 }
-const mapDispatchToProps=(dispatch,props)=>{
-  return{
-      onSignUp:(state)=>{
-          dispatch(actions.signUpAPI(state))
-      }
-  }
-}
-export default connect(null,mapDispatchToProps)(LoginFormRightSignUp);
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onSignUp: state => {
+      dispatch(actions.signUpAPI(state));
+    }
+  };
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginFormRightSignUp);

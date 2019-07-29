@@ -12,6 +12,11 @@
     box-shadow: 2px 1px 2px 0.5px rgb(117, 117, 117);
 }
 
+.listItem {
+    margin-top: 50px;
+    display: none
+}
+
 .p-picture-background {
     position: absolute;
     width: 120px;
@@ -23,10 +28,16 @@
 .p-link {
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
+    transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
     top: 25px;
     right: 10px;
     color: #fafafa;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.p-link:hover {
+    color: #d6d6d6;
 }
 
 .p-content {
@@ -70,7 +81,10 @@
     width: 100px;
     height: 100px;
     position: absolute;
-    border-radius: 50%;
+}
+
+.rounded {
+    border-radius: 50% !important;
 }
 
 .fa.fa-cog {

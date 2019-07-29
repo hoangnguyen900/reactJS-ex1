@@ -14,23 +14,25 @@ export const signUp = state => {
   };
 };
 export const loginAPI = state => {
-  return (dispatch) => {
+  return dispatch => {
     axios({
       method: "post",
       url: "https://terralogic-training.firebaseapp.com/api/login",
       data: state
     })
       .then(res => {
-        console.log('hello',res);
+        localStorage.setItem("token", res.data.token);
+
+        console.log(res);
         dispatch(login(state));
       })
       .catch(er => {
-        console.log(er);
+        alert("Login fail");
       });
   };
 };
 export const signUpAPI = state => {
-  return (dispatch) => {
+  return dispatch => {
     axios({
       method: "post",
       url: "https://terralogic-training.firebaseapp.com/api/sign_up",
@@ -41,7 +43,54 @@ export const signUpAPI = state => {
         dispatch(signUp(state));
       })
       .catch(er => {
-        console.log(er);
+        alert("Email is already exist");
       });
+  };
+};
+export const showProfile = state => {
+  return {
+    type: types.SHOW_PROFILE,
+    state
+  };
+};
+export const showProfileAPI = () => {
+  return dispatch => {
+    var token = localStorage.getItem("token");
+    axios({
+      method: "post",
+      url: "https://terralogic-training.firebaseapp.com/api/get_profile",
+      headers: {
+        "x-user-token": token
+      }
+    })
+      .then(res => {
+        console.log(res);
+        dispatch(showProfile(res.data.data));
+      })
+      .catch(er => {});
+  };
+};
+export const updateProfile = state => {
+  return {
+    type: types.UPDATE_PROFILE,
+    state
+  };
+};
+export const updateProfileAPI = (state) => {
+  return dispatch => {
+    var token = localStorage.getItem("token");
+    axios({
+      method: "post",
+      url: "https://terralogic-training.firebaseapp.com/api/set_profile",
+      headers: {
+        "x-user-token": token
+      },
+      data:state
+    })
+      .then(res => {
+        console.log(res);
+        dispatch(updateProfile(res.data.data));
+      })
+      .catch(er => {});
   };
 };

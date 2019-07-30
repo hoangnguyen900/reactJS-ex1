@@ -2,6 +2,7 @@ import React from "react";
 import "./../styles.scss";
 import { connect } from "react-redux";
 import * as actions from "./../../../../actions/index";
+
 class ProfileForm extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +29,19 @@ class ProfileForm extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+  fileChangedHandler = event => {
+    var fileReader = new FileReader();
+    if (event.target.files[0]) {
+      fileReader.readAsDataURL(event.target.files[0]); // fileReader.result -> URL.
+      fileReader.onload = progressEvent => {
+        var url = fileReader.result;
+        // Something like: data:image/png;base64,iVBORw...Ym57Ad6m6uHj96js
+        this.setState({ avatar: url });
+        this.props.onUpdateProfile(this.state);
+      };
+    }
+  };
+
   componentWillMount() {
     this.props.onShowProfile();
   }
@@ -48,13 +62,18 @@ class ProfileForm extends React.Component {
         <form className="p-box" onSubmit={this.onSubmit}>
           <div className="row m-b-120 p-imgField">
             <img
-              src="https://comps.canstockphoto.com/cartoon-black-witch-cat-face-cute-eps-vectors_csp51000230.jpg"
+              src={(avatar!=='')?avatar:require('../../../../images/nonUser.jpg')}
               className="p-picture-avatar rounded"
-              alt='avatar'
+              alt="avatar"
             />
-            <a href="/#">
-              <i className="fa fa-cog	" />
-            </a>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              onChange={this.fileChangedHandler}
+              ref={fileInput => (this.fileInput = fileInput)}
+            />
+
+            <i className="fa fa-cog	" onClick={() => this.fileInput.click()} />
           </div>
           <div className="row  ">
             <div className="col-sm-6">
@@ -117,7 +136,7 @@ class ProfileForm extends React.Component {
               <div className="p-formField">
                 <label>New Password</label>
                 <input
-                  type="text"
+                  type="password"
                   id="password"
                   name="password"
                   className="p-form-input"
@@ -130,7 +149,7 @@ class ProfileForm extends React.Component {
               <div className="p-formField">
                 <label>Confirm Password</label>
                 <input
-                  type="text"
+                  type="password"
                   id="confirm"
                   name="confirm"
                   className="p-form-input"

@@ -3,7 +3,7 @@ var initialState = {
   display_name: "",
   display_info: "",
   phone: "",
-  avatar: ""
+  avatar: []
 };
 var myReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -19,7 +19,7 @@ var myReducer = (state = initialState, action) => {
       };
     case types.UPDATE_PROFILE:
       console.log("dataProfileUpdate: ", action.state);
-
+      alert('Update successfully')
       return {
         ...action.state
       };

@@ -1,5 +1,6 @@
 import * as types from "./actionTypes";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const login = state => {
   return {
@@ -7,12 +8,7 @@ export const login = state => {
     state
   };
 };
-export const signUp = state => {
-  return {
-    type: types.SIGNUP,
-    state
-  };
-};
+
 export const loginAPI = state => {
   return dispatch => {
     axios({
@@ -27,8 +23,18 @@ export const loginAPI = state => {
         dispatch(login(state));
       })
       .catch(er => {
-        alert("Login fail");
+        Swal.fire({
+          type: "error",
+          title: "Oops...",
+          text: "Something went wrong! Email or password must valid!!"
+        });
       });
+  };
+};
+export const signUp = state => {
+  return {
+    type: types.SIGNUP,
+    state
   };
 };
 export const signUpAPI = state => {
@@ -41,9 +47,21 @@ export const signUpAPI = state => {
       .then(res => {
         console.log(res);
         dispatch(signUp(state));
+        Swal.fire({
+          position: 'top',
+          type: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
       })
       .catch(er => {
-        alert("Email is already exist");
+        Swal.fire({
+          type: "error",
+          title: "Oops...",
+          text: "Email is already exist!!"
+        });
       });
   };
 };
@@ -76,7 +94,7 @@ export const updateProfile = state => {
     state
   };
 };
-export const updateProfileAPI = (state) => {
+export const updateProfileAPI = state => {
   return dispatch => {
     var token = localStorage.getItem("token");
     axios({
@@ -85,12 +103,25 @@ export const updateProfileAPI = (state) => {
       headers: {
         "x-user-token": token
       },
-      data:state
+      data: state
     })
       .then(res => {
         console.log(res);
         dispatch(updateProfile(res.data.data));
+        Swal.fire({
+          position: 'top',
+          type: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-      .catch(er => {});
+      .catch(er => {
+        Swal.fire({
+          type: "error",
+          title: "Oops...",
+          text: "Something went wrong!!!"
+        });
+      });
   };
 };

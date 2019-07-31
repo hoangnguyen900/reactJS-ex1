@@ -3,6 +3,8 @@ import "./../styles.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./../../../../actions/index";
+import Swal from "sweetalert2";
+
 class LoginFormRightSignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,11 @@ class LoginFormRightSignUp extends React.Component {
     e.preventDefault();
     var { password, confirmPassword } = this.state;
     if (confirmPassword !== password) {
-      alert("Passwords don't match");
+      Swal.fire({
+        type: "error",
+        title: "Oops...",
+        text: "Password don't match!!"
+      });
     } else {
       e.preventDefault();
       this.props.onSignUp(this.state);

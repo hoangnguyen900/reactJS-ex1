@@ -2,6 +2,7 @@ import React from "react";
 import "./../styles.scss";
 import { connect } from "react-redux";
 import * as actions from "./../../../../actions/index";
+import history from "../../../../history";
 
 class ProfileForm extends React.Component {
   constructor(props) {
@@ -43,7 +44,8 @@ class ProfileForm extends React.Component {
   };
 
   componentWillMount() {
-    this.props.onShowProfile();
+    if (!localStorage.getItem("token")) history.push("/");
+    else this.props.onShowProfile();
   }
   componentWillReceiveProps(nextProps) {
     console.log(nextProps.profile);
@@ -62,7 +64,11 @@ class ProfileForm extends React.Component {
         <form className="p-box" onSubmit={this.onSubmit}>
           <div className="row m-b-120 p-imgField">
             <img
-              src={(avatar!=='')?avatar:require('../../../../images/nonUser.jpg')}
+              src={
+                avatar !== ""
+                  ? avatar
+                  : require("../../../../images/nonUser.jpg")
+              }
               className="p-picture-avatar rounded"
               alt="avatar"
             />

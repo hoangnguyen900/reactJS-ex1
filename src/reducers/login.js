@@ -17,8 +17,9 @@ var myReducer = (state = initialState, action) => {
         ...state
       };
     case types.SIGNUP:
-      alert("Sign Up Successfully");
-      break;
+        return {
+          ...state
+        };
     default:
       return state;
   }

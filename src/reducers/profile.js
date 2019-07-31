@@ -19,7 +19,7 @@ var myReducer = (state = initialState, action) => {
       };
     case types.UPDATE_PROFILE:
       console.log("dataProfileUpdate: ", action.state);
-      alert('Update successfully')
+      //alert('Update successfully')
       return {
         ...action.state
       };

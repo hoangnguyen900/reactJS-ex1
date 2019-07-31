@@ -47,6 +47,7 @@ class LoginFormRightLogin extends React.Component {
       // return <Redirect to="/profile" data={this.state}/>;
       history.push('/profile')
     }
+
     return (
       <div className="content-right">
         <form onSubmit={this.onSubmit} className="form-info">

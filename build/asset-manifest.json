@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2dc014f7.chunk.css",
+    "main.js": "/static/js/main.d09879d5.chunk.js",
+    "main.js.map": "/static/js/main.d09879d5.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.98240c20.chunk.js": "/static/js/2.98240c20.chunk.js",
+    "static/js/2.98240c20.chunk.js.map": "/static/js/2.98240c20.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f528724a4457bfc1d0171b82987167c9.js": "/precache-manifest.f528724a4457bfc1d0171b82987167c9.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.2dc014f7.chunk.css.map": "/static/css/main.2dc014f7.chunk.css.map",
+    "static/media/styles.scss": "/static/media/background.ec0132eb.jpg",
+    "static/media/nonUser.jpg": "/static/media/nonUser.ba5d3925.jpg",
+    "static/media/terralogic.png": "/static/media/terralogic.47a63680.png"
+  }
+}

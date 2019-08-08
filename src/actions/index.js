@@ -168,7 +168,6 @@ export const userLogoutAPI = (token) => {
     })
       .then(res => {
         console.log('Logout',res)
-        localStorage.clear();
       })
       .catch(er => {});
      
